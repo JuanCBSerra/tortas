@@ -1,7 +1,17 @@
 import { useCart } from '../hooks/CartContext';
+import { useToast } from '../hooks/ToastContext';
+import { useCallback } from 'react';
+import "../styles/cake-card.css";
 
 export default function CakeCard({ cake }) {
   const { addToCart } = useCart();
+  const { addToast} = useToast();
+
+  const handleAddToCart = useCallback((cake) => {
+    addToCart(cake);
+    addToast(`¡${cake.title} ha sido agregado al carrito!`);
+  }, [addToast, addToCart]);
+
   return (
     <div className="cake-card">
       <img
@@ -17,8 +27,7 @@ export default function CakeCard({ cake }) {
         <div className="cake-price">{cake.price}</div>
         <button
           className="button"
-          style={{ marginTop: 12, fontSize: '0.95rem', padding: '8px 16px' }}
-          onClick={() => addToCart(cake)}
+          onClick={() => handleAddToCart(cake)}
         >
           Agregar al carrito
         </button>

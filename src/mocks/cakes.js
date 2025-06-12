@@ -13,7 +13,7 @@ export async function fetchCakesFromUnsplash() {
     // Adaptar los datos al formato de "cake"
     return data.map((photo, idx) => ({
         id: idx + 1, // ID simple basado en el índice
-        title: photo.description || photo.alt_description || `Torta ${idx + 1}`,
+        title: `Torta ${idx + 1}`,
         description: photo.alt_description || 'Torta artesanal de nuestra colección.',
         price: `$${(12 + Math.floor(Math.random() * 8))}.00`, // Precio aleatorio de ejemplo
         imageUrl: photo.urls.regular

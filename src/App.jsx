@@ -1,28 +1,36 @@
-import './styles.css'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import "./styles.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import { CartProvider } from './hooks/CartContext'
-import Cart from './pages/Cart'
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Pedidos from "./pages/Pedidos";
+import { CartProvider } from "./hooks/CartContext";
+import { ToastProvider } from "./hooks/ToastContext";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
     <Router>
-      <div className="main-container">
-        <CartProvider>
+      <CartProvider>
+        <ToastProvider>
           <Header />
-          <Routes>
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/" element={<Home />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <div className="main-container">
+            <Routes>
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/" element={<Pedidos />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </div>
           <Footer />
-        </CartProvider>
-      </div>
-    </Router >
-  )
+        </ToastProvider>
+      </CartProvider>
+    </Router>
+  );
 }
 
-export default App
+export default App;

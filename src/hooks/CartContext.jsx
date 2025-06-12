@@ -22,12 +22,24 @@ export function CartProvider({ children }) {
     setCart(prev => prev.filter(item => item.id !== id));
   }
 
+  function reduceFromCart(id) {
+    setCart(prev => {
+      const item = prev.find(item => item.id === id);
+      if (item && item.quantity > 1) {
+        return prev.map(item =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        );
+      }
+      return prev.filter(item => item.id !== id);
+    })
+  }
+
   function clearCart() {
     setCart([]);
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, reduceFromCart,  clearCart }}>
       {children}
     </CartContext.Provider>
   );

@@ -1,43 +1,76 @@
-import { useCart } from '../hooks/CartContext';
+import { useCart } from "../hooks/CartContext";
+import "../styles/cart.css";
 
 export default function Cart() {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart, clearCart, addToCart, reduceFromCart } = useCart();
 
   const total = cart.reduce((sum, item) => {
-    // Extrae el número del precio (ej: "$15.00" -> 15)
-    const price = parseFloat(item.price.replace(/[^\d.]/g, ''));
+    const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
     return sum + price * (item.quantity || 1);
   }, 0);
 
   return (
-    <section style={{ maxWidth: 600, margin: '40px auto', background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px rgba(166,116,110,0.08)', padding: 32 }}>
-      <h2 className="hero-title" style={{ fontSize: '2rem', marginBottom: 24 }}>Carrito de compras</h2>
+    <section className="cart-container">
+      <h2 className="hero-title cart-title">Carrito de compras</h2>
       {cart.length === 0 ? (
-        <p style={{ textAlign: 'center', color: '#A9746E' }}>Tu carrito está vacío.</p>
+        <p className="cart-empty">Parece que no agregaste tortas a tu pedido todavía.</p>
       ) : (
         <>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {cart.map(item => (
-              <li key={item.id} style={{ display: 'flex', alignItems: 'center', marginBottom: 18, borderBottom: '1px solid #F6E3B4', paddingBottom: 12 }}>
-                <img src={item.imageUrl} alt={item.title} style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 8, marginRight: 16 }} />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 'bold', color: '#4B2E2B' }}>{item.title}</div>
-                  <div style={{ color: '#A9746E', fontSize: 15 }}>{item.price} x {item.quantity || 1}</div>
+          <ul className="cart-list">
+            {cart.map((item) => (
+              <li className="cart-item" key={item.id}>
+                <img
+                  className="cart-item-img"
+                  src={item.imageUrl}
+                  alt={item.title}
+                />
+                <div className="cart-item-info">
+                  <div className="cart-item-title">{item.title}</div>
+                  <div className="cart-item-details">
+                    {item.price} x {item.quantity || 1}
+                  </div>
                 </div>
-                <button className="button" style={{ padding: '6px 14px', fontSize: 14 }} onClick={() => removeFromCart(item.id)}>
+                <div className="cart-item-buttons" style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    margin: "1rem 0",
+                  }}
+                >
+                  <button
+                    className="button cart-btn"
+                    onClick={() => addToCart(item)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="button cart-btn"
+                    onClick={() => reduceFromCart(item.id)}
+                  >
+                    -
+                  </button>
+                </div>
+                <button
+                  className="button cart-btn"
+                  style={{ margin: "2rem 0"}}
+                  onClick={() => removeFromCart(item.id)}
+                >
                   Quitar
                 </button>
+
+                </div>
               </li>
             ))}
           </ul>
-          <div style={{ textAlign: 'right', marginTop: 24, fontWeight: 'bold', color: '#4B2E2B', fontSize: 18 }}>
-            Total: ${total.toFixed(2)}
-          </div>
-          <button className="button" style={{ marginTop: 24, background: '#A9746E' }} onClick={clearCart}>
+          <div className="cart-total">Total: ${total.toFixed(2)}</div>
+          <button className="button cart-clear-btn" onClick={clearCart}>
             Vaciar carrito
           </button>
         </>
       )}
     </section>
   );
-};
+}
