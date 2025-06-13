@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchCakesFromUnsplash } from '../mocks/cakes';
 import CakeCard from './CakeCard';
-import "../styles/Gallery.css";
+import "../styles/gallery.css";
 
 export default function Gallery() {
     const [cakes, setCakes] = useState(null);

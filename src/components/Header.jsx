@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import cartLogo from "../assets/shopping_cart.png";
 import logoImg from "../assets/logo.png";
-import "../styles/Header.css";
+import "../styles/header.css";
 
 const Header = () => {
   return (

@@ -1,5 +1,5 @@
 import Gallery from "../components/Gallery";
-import "../styles/Pedidos.css";
+import "../styles/pedidos.css";
 
 const Pedidos = () => {
     return (
