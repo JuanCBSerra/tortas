@@ -6,6 +6,8 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import gsap from "gsap";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Pedidos from "./pages/Pedidos";
@@ -18,15 +20,24 @@ function App() {
     <Router>
       <CartProvider>
         <ToastProvider>
-          <Header />
           <div className="main-container">
-            <Routes>
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/" element={<Pedidos />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+            <Header />
+            <div className="content">
+              <Routes>
+                <Route path="/cart" element={
+                  <Cart />
+                } />
+                <Route path="/" element={
+
+                  <Pedidos />
+                } />
+                <Route path="*" element={
+                  <Navigate to="/" replace />
+                } />
+              </Routes>
+            </div>
+            <Footer />
           </div>
-          <Footer />
         </ToastProvider>
       </CartProvider>
     </Router>

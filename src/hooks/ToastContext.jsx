@@ -1,3 +1,4 @@
+import "../styles/toast.css";
 import { createContext, useContext, useState } from "react";
 
 const ToastContext = createContext();
@@ -31,35 +32,14 @@ export function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={{ addToast, removeToast }}>
       {children}
-      <div
-        style={{
-          position: "fixed",
-          bottom: "24px",
-          right: "24px",
-          zIndex: 1000,
-          display: "flex",
-          flexDirection: "column",
-          gap: "12px",
-          alignItems: "flex-end",
-        }}
-      >
+      <div className="toast-container">
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`toast-anim${
+            className={`toast toast-anim${
               toast.visible ? " toast-in" : " toast-out"
             }`}
             style={{
-              background: "#a0522d",
-              color: "#fff",
-              padding: "16px 24px",
-              borderRadius: "8px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-              minWidth: "220px",
-              display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-              transition: "all 0.4s cubic-bezier(.4,0,.2,1)",
               opacity: toast.visible ? 1 : 0,
               transform: toast.visible ? "translateX(0)" : "translateX(120%)",
             }}
@@ -82,21 +62,6 @@ export function ToastProvider({ children }) {
           </div>
         ))}
       </div>
-      <style>
-        {`
-        .toast-anim {
-          will-change: opacity, transform;
-        }
-        .toast-in {
-          opacity: 1;
-          transform: translateX(0);
-        }
-        .toast-out {
-          opacity: 0;
-          transform: translateX(120%);
-        }
-        `}
-      </style>
     </ToastContext.Provider>
   );
 }

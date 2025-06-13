@@ -21,7 +21,6 @@ body {
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
   /* Fondo pastel degradado */
-    background: linear-gradient(90deg, #fbeee6 0%, #e9d6f7 100%);
   min-height: 100vh;
 }
 
@@ -54,4 +53,31 @@ h1, h2, h3, h4, h5, h6 {
 */
 #root, #__next {
   isolation: isolate;
+}
+
+#root {
+  height: 100vh;
+}
+
+.main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+.button {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  color: #333;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #00000071;
 }
