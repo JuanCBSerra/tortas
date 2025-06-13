@@ -2,7 +2,7 @@ import { useCart } from "../hooks/CartContext";
 import "../styles/cart.css";
 
 export default function Cart() {
-  const { cart, removeFromCart, clearCart, addToCart, reduceFromCart } = useCart();
+  const { cart, removeFromCart, clearCart, addToCart, reduceFromCart, checkoutCart } = useCart();
 
   const total = cart.reduce((sum, item) => {
     const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
@@ -11,7 +11,8 @@ export default function Cart() {
 
   return (
     <section className="cart-container">
-      <h2 className="hero-title cart-title">Carrito de compras</h2>
+      <h2 className="cart-title">Carrito de compras</h2>
+      <h3 className="cart-subtitle">Cuando procedas a finalizar tu compra, te redijiremos a whatsapp para que nos envíes tu pedido</h3>
       {cart.length === 0 ? (
         <p className="cart-empty">Parece que no agregaste tortas a tu pedido todavía.</p>
       ) : (
@@ -68,6 +69,12 @@ export default function Cart() {
           <div className="cart-total">Total: ${total.toFixed(2)}</div>
           <button className="button cart-clear-btn" onClick={clearCart}>
             Vaciar carrito
+          </button>
+          <button
+            className="button cart-checkout-btn"
+            onClick={checkoutCart}
+          >
+            Finalizar compra
           </button>
         </>
       )}

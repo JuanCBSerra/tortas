@@ -4,15 +4,13 @@
     margin: 0; /* Elimina el margen, el gap del grid lo maneja */
     padding: 20px;
     border-radius: 24px;
-    box-shadow: 0 4px 16px rgba(180, 140, 200, 0.10);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s;
-    border: 1.5px solid #f7d6e0;
+    border: 1.5px solid #e95ed671;
 }
 
 .cake-card:hover {
     transform: scale(1.04);
     box-shadow: 0 8px 32px rgba(180, 140, 200, 0.18);
-    background: linear-gradient(135deg, #fff0f6 60%, #e9d6f7 100%);
 }
 
 .cake-photo {
@@ -21,7 +19,6 @@
     object-fit: cover;
     border-radius: 16px;
     margin-bottom: 16px;
-    box-shadow: 0 2px 12px #fbeee6;
 }
 
 .cake-info {
@@ -32,25 +29,20 @@
 }
 
 .cake-title{
-    color: #b48ec8;
     text-decoration-line: overline;
     font-weight: 600;
     letter-spacing: 1px;
 }
 
 .cake-description {
-    color: #e48a9e;
     font-size: 16px;
     margin: 8px 0;
 }
 
 .cake-price {
-    color: #a9746e;
     font-size: 1.2rem;
     margin-bottom: 10px;
     font-weight: bold;
-    background: #fbeee6;
     border-radius: 8px;
     padding: 4px 12px;
-    box-shadow: 0 1px 4px #f7d6e0;
 }
